@@ -10,5 +10,18 @@
   <%= @squad.formation %>
 </p>
 
+<% array = %w(defender midfielder striker) %>
+
+<p>
+  <% @teams.each_with_index do |team, index| %>
+    <% player = team.get_player %>
+    <p>
+      <%= array[index] %>
+      name: <%= player.name %>
+      image: <%= image_tag(player.image_url) %>
+    </p>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_squad_path(@squad) %> |
 <%= link_to 'Back', squads_path %>

@@ -19,6 +19,16 @@
     <%= f.label :formation %><br>
     <%= f.text_field :formation %>
   </div>
+  
+  <% array = %w(defender midfielder striker) %>
+  
+  <%= f.fields_for :teams do |builder| %>
+    <div class="field">    
+      <%= array[builder.index] %>
+      <%= builder.collection_select(:player_id, Player.all, :id, :name, {prompt: "select player"}) %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
