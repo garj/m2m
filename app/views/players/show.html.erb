@@ -6,8 +6,19 @@
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @player.image_url %>
+  <%= image_tag @player.image_url %>
+</p>
+
+<p>
+  <%= "in #{pluralize(@player.squads.count, "team")}" %>
+  <% @player.squads.each do |squad| %>
+  <% player_details = @player.teams.get_position_string_for_player_from_squad(squad.id, @player.id) %>  
+    <p>
+      <%= link_to squad.name, squad_path(squad) %>
+      <%= player_details.first.position_string %>
+    </p>
+  <% end %>
+  
 </p>
 
 <%= link_to 'Edit', edit_player_path(@player) %> |

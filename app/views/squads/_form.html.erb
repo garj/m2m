@@ -23,9 +23,10 @@
   <% array = %w(defender midfielder striker) %>
   
   <%= f.fields_for :teams do |builder| %>
-    <div class="field">    
-      <%= array[builder.index] %>
+    <div class="field">
+      <%= Team.get_position_string(builder.index) %>       
       <%= builder.collection_select(:player_id, Player.all, :id, :name, {prompt: "select player"}) %>
+      <%= builder.hidden_field :position_string %>
     </div>
   <% end %>
 

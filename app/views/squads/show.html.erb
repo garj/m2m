@@ -10,13 +10,11 @@
   <%= @squad.formation %>
 </p>
 
-<% array = %w(defender midfielder striker) %>
-
-
 <% @squad.players.each_with_index do |player,index| %>
   <p>
-    name: <%= player.name %>
-    image: <%= image_tag(player.image_url) %>
+    <%= Team.get_position_string(index) %>:   
+      <%= player.name %>
+      <%= image_tag(player.image_url) %>
   </p>
 <% end %>
 

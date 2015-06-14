@@ -16,7 +16,10 @@ class SquadsController < ApplicationController
   # GET /squads/new
   def new
     @squad = Squad.new
-    3.times { @squad.teams.build }
+    3.times do |count|
+      string = Team.get_position_string(count)
+      @squad.teams.build(position_string: string)
+    end
   end
 
   # GET /squads/1/edit
@@ -26,7 +29,6 @@ class SquadsController < ApplicationController
   # POST /squads
   # POST /squads.json
   def create
-
     @squad = Squad.new(squad_params)
 
     respond_to do |format|
@@ -72,6 +74,6 @@ class SquadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def squad_params
-      params.require(:squad).permit(:name, :formation, teams_attributes: [:id, :squad_id, :player_id, :player_position_id])
+      params.require(:squad).permit(:name, :formation, teams_attributes: [:id, :squad_id, :player_id, :position_string])
     end
 end
