@@ -2,20 +2,23 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @player.first.name %>
+  <%= @player.name %>
 </p>
 
 <p>
-  <%= image_tag @player.first.image_url %>
+  <%= image_tag @player.image_url %>
 </p>
 
 <p>
-  <%= "in #{pluralize(@player.first.squads.count, "team")}" %>
-  <% @player.first.squads.each do |squad| %>
-    <p>
-      <%= link_to squad.name, squad_path(squad) %>
-      <%= @teams.select {|x| x.squad_id == squad.id}.first.position_string %>
-    </p>
+  <%= "in #{pluralize(@player_squads.count, "team")}" %>
+  <% if @player_squads.present? %>
+    <% @player_squads.first.squads.each do |squad| %>
+      <p>
+        <%= link_to squad.name, squad_path(squad) %>
+        <% team = @teams.select {|x| x.squad_id == squad.id} %>
+        <%= team.first.position_string if team.present? %>
+      </p>
+    <% end %>
   <% end %>
   
 </p>
