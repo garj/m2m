@@ -64,7 +64,8 @@ class PlayersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = Player.find(params[:id])
+      @player = Player.where(id: params[:id]).joins(:squads)
+      @teams = Team.where(player_id: params[:id]).all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

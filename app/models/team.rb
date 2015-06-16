@@ -8,8 +8,4 @@ class Team < ActiveRecord::Base
   def self.get_position_string(num)
     POSITION[num]
   end
-  
-  def self.get_position_string_for_player_from_squad(squad_id, player_id)
-    Team.where(squad_id: squad_id, player_id: player_id)
-  end
 end
