@@ -13,7 +13,7 @@
 <% @squad.players.each_with_index do |player,index| %>
   <p>
     <%= Team.get_position_string(index) %>:   
-      <%= player.name %>
+      <%= link_to player.name, player_path(player) %>
       <%= image_tag(player.image_url) %>
   </p>
 <% end %>
