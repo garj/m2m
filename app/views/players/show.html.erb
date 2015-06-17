@@ -15,12 +15,11 @@
     <% @player_squads.first.squads.each do |squad| %>
       <p>
         <%= link_to squad.name, squad_path(squad) %>
-        <% team = @teams.select {|x| x.squad_id == squad.id} %>
-        <%= team.first.position_string if team.present? %>
+        <% team = @teams.find {|x| x.squad_id == squad.id} %>
+        <%= team.position_string if team.present? %>
       </p>
     <% end %>
   <% end %>
-  
 </p>
 
 <%= link_to 'Edit', edit_player_path(@player) %> |

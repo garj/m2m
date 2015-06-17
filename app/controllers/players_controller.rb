@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
     @player_squads = Player.where(id: params[:id]).joins(:squads)
-    @teams = Team.where(player_id: params[:id]).all
+    @teams = Team.where(player_id: params[:id])
   end
 
   # GET /players/new
